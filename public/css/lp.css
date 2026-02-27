@@ -1,0 +1,456 @@
+/* css/lp.css (v=1.9)
+   PRELANDER LP (no portal header/menu/footer)
+   Scoped under .top-page.lp-page so it only affects the LP
+*/
+
+:root{
+  --lp-bg1:#050815;
+  --lp-bg2:#0b1238;
+  --lp-pink:#ff04c0;
+  --lp-cyan:#0de5f9;
+
+  --lp-card-bg: rgba(255,255,255,.94);
+  --lp-card-text:#505050;
+
+  --lp-shadow: 0 18px 40px rgba(0,0,0,.35);
+  --lp-shadow-lg: 0 26px 70px rgba(0,0,0,.50);
+
+  --lp-radius: 18px;
+  --lp-radius-lg: 28px;
+  --lp-pill: 999px;
+
+  /* layout knobs */
+  --lp-gap: 28px;
+  --lp-topbar-h: 54px;
+}
+
+/* Base */
+html, body{ height: 100%; }
+body{
+  background: var(--lp-bg1) !important;
+}
+
+/* =========================================================
+   PAGE BACKGROUND
+   ========================================================= */
+.top-page.lp-page{
+  min-height: 100vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow-x: hidden !important;
+
+  background-image:
+    linear-gradient(180deg, rgba(5,8,21,.30) 0%, rgba(5,8,21,.86) 100%),
+    radial-gradient(1100px 600px at 70% 30%, rgba(13,229,249,.16) 0%, rgba(13,229,249,0) 62%),
+    radial-gradient(900px 560px at 90% 8%, rgba(255,4,192,.16) 0%, rgba(255,4,192,0) 62%),
+    url("/images/gamebeats2.png") !important;
+
+  background-repeat: no-repeat !important;
+  background-position: center top !important;
+  background-size: cover !important;
+
+  background-attachment: fixed;
+}
+
+/* =========================================================
+   HERO (single-screen prelander)
+   ========================================================= */
+.top-page.lp-page .lp-hero{
+  flex: 1 1 auto !important;
+  display: flex !important;
+  align-items: center !important;
+
+  /* prevents the “extra bottom gap” on some browsers */
+  min-height: 100svh !important;
+
+  /* tighter + balanced */
+  padding: 28px 0 28px !important;
+
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.top-page.lp-page .lp-hero::before{
+  content:"";
+  position:absolute;
+  inset: 0;
+  background: radial-gradient(rgba(255,255,255,.10) 1px, transparent 1px);
+  background-size: 22px 22px;
+  opacity:.05;
+  pointer-events:none;
+}
+
+.top-page.lp-page .lp-hero-row{
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================================
+   TOPBAR (logo + language switch)
+   ========================================================= */
+.top-page.lp-page .lp-topbar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+
+  /* no huge bottom margin; keep it tight */
+  margin: 0 0 16px;
+}
+
+.top-page.lp-page .lp-topbar__brand{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.top-page.lp-page .lp-brand__logo{
+  display: block;
+  height: auto;
+  max-width: 180px;
+  filter: drop-shadow(0 12px 26px rgba(0,0,0,.45));
+}
+
+/* Language dropdown styled as pill */
+.top-page.lp-page .lp-lang{
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  height: 42px;
+  padding: 0 44px 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.78);
+  color: rgba(255,255,255,.92);
+
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: .02em;
+
+  box-shadow: 0 10px 22px rgba(0,0,0,.28);
+  outline: none;
+  cursor: pointer;
+
+  /* caret */
+  background-image:
+    linear-gradient(45deg, transparent 50%, rgba(255,255,255,.85) 50%),
+    linear-gradient(135deg, rgba(255,255,255,.85) 50%, transparent 50%);
+  background-position:
+    calc(100% - 20px) 17px,
+    calc(100% - 14px) 17px;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+
+.top-page.lp-page .lp-lang:focus{
+  border-color: rgba(13,229,249,.55);
+  box-shadow: 0 0 0 3px rgba(13,229,249,.18), 0 10px 22px rgba(0,0,0,.28);
+}
+
+/* =========================================================
+   GRID ALIGNMENT FIX
+   ========================================================= */
+.top-page.lp-page .lp-hero-row > [class*="col-"]{
+  display: flex;
+}
+
+.top-page.lp-page .lp-hero-row .lp-card,
+.top-page.lp-page .lp-hero-row .lp-feature{
+  width: 100%;
+}
+
+/* =========================================================
+   CARD
+   ========================================================= */
+.top-page.lp-page .lp-card{
+  background: var(--lp-card-bg) !important;
+  color: var(--lp-card-text) !important;
+  border-radius: var(--lp-radius) !important;
+
+  /* softer, cleaner border */
+  border: 1px solid rgba(0,0,0,.08) !important;
+
+  box-shadow: var(--lp-shadow-lg) !important;
+
+  padding: 26px 24px !important;
+  max-width: 560px !important;
+
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.top-page.lp-page .lp-title{
+  font-family: "Bangers", sans-serif !important;
+  letter-spacing: 1px !important;
+  font-size: 48px !important;
+  line-height: .95 !important;
+  margin: 0 0 10px !important;
+  color: #2f2f2f !important;
+}
+
+.top-page.lp-page .lp-sub{
+  margin: 0 0 14px !important;
+  color: rgba(0,0,0,.62) !important;
+  line-height: 1.55 !important;
+  font-size: 14px !important;
+  max-width: 55ch !important;
+}
+
+/* price line */
+.top-page.lp-page .lp-price{
+  margin: 12px 0 0 !important;
+  font-size: 12px !important;
+  color: rgba(0,0,0,.62) !important;
+  display: inline-flex;
+  gap: 6px;
+  align-items: baseline;
+}
+.top-page.lp-page .lp-price__val{
+  font-family: "Bangers", sans-serif;
+  letter-spacing: .5px;
+  font-size: 18px;
+  color: #1f1f1f;
+}
+
+/* =========================================================
+   INPUT + CTA
+   ========================================================= */
+.top-page.lp-page .lp-input-wrap{
+  margin: 10px 0 14px !important;
+}
+
+.top-page.lp-page .lp-input{
+  width: 100% !important;
+  height: 54px !important;
+  border-radius: var(--lp-pill) !important;
+  border: 1px solid rgba(0,0,0,.22) !important;
+
+  /* slightly less transparent to look “premium” */
+  background: rgba(255,255,255,.72) !important;
+
+  padding: 0 18px !important;
+  outline: none !important;
+  color: #1f1f1f !important;
+  font-size: 16px !important;
+}
+
+.top-page.lp-page .lp-input:focus{
+  border-color: rgba(13,229,249,.55) !important;
+  box-shadow: 0 0 0 4px rgba(13,229,249,.14) !important;
+}
+
+.top-page.lp-page .lp-input::placeholder{
+  color: rgba(0,0,0,.45) !important;
+}
+
+.top-page.lp-page .lp-btn{
+  height: 56px !important;
+  width: 100% !important;
+  border-radius: var(--lp-pill) !important;
+  border: none !important;
+  cursor: pointer !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  font-weight: 700 !important;
+  font-family: "Bangers", sans-serif !important;
+  letter-spacing: 1px !important;
+  font-size: 22px !important;
+  color:#fff !important;
+
+  background: linear-gradient(90deg, var(--lp-cyan), var(--lp-pink)) !important;
+  box-shadow: 0 14px 30px rgba(0,0,0,.30) !important;
+  transition: transform .12s ease, filter .12s ease, box-shadow .12s ease !important;
+}
+
+.top-page.lp-page .lp-btn:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+  box-shadow: 0 18px 40px rgba(0,0,0,.34) !important;
+}
+.top-page.lp-page .lp-btn:active{ transform: translateY(0); }
+
+.top-page.lp-page .lp-status{
+  margin-top: 12px !important;
+  font-size: 13px !important;
+  min-height: 18px !important;
+}
+.top-page.lp-page .lp-status.is-ok{ color: #127a3a !important; }
+.top-page.lp-page .lp-status.is-err{ color: #b11616 !important; }
+
+.top-page.lp-page .lp-terms{
+  margin: 10px 0 0 !important;
+  font-size: 12px !important;
+  color: rgba(0,0,0,.55) !important;
+}
+.top-page.lp-page .lp-terms a{
+  color: var(--lp-pink) !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+}
+.top-page.lp-page .lp-terms a:hover{ text-decoration: underline !important; }
+
+/* =========================================================
+   FEATURED PANEL (foreground images)
+   ========================================================= */
+.top-page.lp-page .lp-feature{
+  width: 100% !important;
+}
+
+.top-page.lp-page .lp-feature__frame{
+  width: 100% !important;
+
+  /* ✅ adapt to screen height -> removes awkward bottom gap */
+  height: clamp(360px, 46vh, 520px) !important;
+
+  border-radius: var(--lp-radius-lg) !important;
+  position: relative !important;
+  overflow: hidden !important;
+
+  background: linear-gradient(135deg, rgba(11,18,56,.55), rgba(5,8,21,.82)) !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+  box-shadow: var(--lp-shadow-lg) !important;
+}
+
+.top-page.lp-page .lp-feature__frame::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image: radial-gradient(rgba(255,255,255,.10) 1px, transparent 1px);
+  background-size: 18px 18px;
+  opacity:.10;
+  pointer-events:none;
+  z-index: 2;
+}
+
+/* ✅ full image, no cropping */
+.top-page.lp-page .lp-feature__img{
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+
+  object-fit: contain !important;
+  object-position: center center !important;
+
+  /* gentle letterbox */
+  background: rgba(0,0,0,.20) !important;
+
+  opacity: 0 !important;
+  transform: scale(1.01) !important;
+  transition: opacity .35s ease, transform .6s ease !important;
+  z-index: 1;
+}
+
+.top-page.lp-page .lp-feature__img.is-active{
+  opacity: 1 !important;
+  transform: scale(1) !important;
+}
+
+/* dots */
+.top-page.lp-page .lp-feature__dots{
+  display: flex !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  margin-top: 12px !important;
+}
+
+.top-page.lp-page .lp-dot{
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 999px !important;
+  border: 0 !important;
+  cursor: pointer !important;
+  background: rgba(255,255,255,.32) !important;
+  box-shadow: 0 6px 14px rgba(0,0,0,.25) !important;
+  transition: transform .12s ease, background .12s ease, opacity .12s ease !important;
+  opacity: .9;
+}
+.top-page.lp-page .lp-dot:hover{ transform: translateY(-1px) !important; }
+.top-page.lp-page .lp-dot.is-active{
+  background: linear-gradient(90deg, var(--lp-cyan), var(--lp-pink)) !important;
+  opacity: 1;
+}
+
+.top-page.lp-page .lp-feature__copy{
+  margin-top: 10px !important;
+  text-align: center !important;
+  font-size: 12px !important;
+  color: rgba(255,255,255,.82) !important;
+  text-shadow: 0 6px 16px rgba(0,0,0,.45);
+}
+
+/* =========================================================
+   MINI FOOTER (prelander)
+   ========================================================= */
+.top-page.lp-page .lp-mini-footer{
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+
+  font-size: 12px;
+  color: rgba(255,255,255,.70);
+  text-shadow: 0 6px 16px rgba(0,0,0,.45);
+}
+.top-page.lp-page .lp-mini-footer a{
+  color: rgba(255,255,255,.82);
+  text-decoration: none;
+  font-weight: 700;
+}
+.top-page.lp-page .lp-mini-footer a:hover{ text-decoration: underline; }
+.top-page.lp-page .lp-mini-footer__dot{ opacity: .6; }
+
+/* =========================================================
+   Accessibility
+   ========================================================= */
+.sr-only{
+  position:absolute !important;
+  width:1px !important;
+  height:1px !important;
+  padding:0 !important;
+  margin:-1px !important;
+  overflow:hidden !important;
+  clip:rect(0,0,0,0) !important;
+  white-space:nowrap !important;
+  border:0 !important;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 991px){
+  .top-page.lp-page{
+    background-attachment: scroll !important;
+    background-position: center center !important;
+  }
+
+  .top-page.lp-page .lp-hero{
+    min-height: auto !important;
+    padding: 20px 0 26px !important;
+  }
+
+  .top-page.lp-page .lp-topbar{
+    margin: 0 0 14px;
+  }
+
+  .top-page.lp-page .lp-brand__logo{
+    max-width: 150px;
+  }
+
+  .top-page.lp-page .lp-title{
+    font-size: 40px !important;
+  }
+
+  /* slightly smaller feature on mobile */
+  .top-page.lp-page .lp-feature__frame{
+    height: 320px !important;
+  }
+}
