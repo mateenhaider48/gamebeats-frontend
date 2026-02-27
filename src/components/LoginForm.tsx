@@ -18,7 +18,7 @@ export default function LoginForm() {
     debounce(async (number: string) => {
       try {
         const res = await axios.post(
-          `${process.env.BACKEND_URL}/api/auth/check-user`,
+          "https://gamebeats-backend.onrender.com/api/auth/check-user",
           {
             phoneNumber: number,
           },

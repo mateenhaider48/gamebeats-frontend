@@ -20,7 +20,7 @@ export default function RegisterForm() {
     try {
       if(password === confirmPassword){
       const response = await axios.post(
-        `${process.env.BACKEND_URL}/api/auth/register`,
+        "https://gamebeats-backend.onrender.com/api/auth/register",
         {
           email,
           username,
